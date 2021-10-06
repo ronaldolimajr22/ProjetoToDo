@@ -1,0 +1,50 @@
+object frmTarefas: TfrmTarefas
+  Left = 0
+  Top = 0
+  Caption = 'Projeto ToDo - Tarefas'
+  ClientHeight = 451
+  ClientWidth = 625
+  Color = clBtnFace
+  Font.Charset = DEFAULT_CHARSET
+  Font.Color = clWindowText
+  Font.Height = -11
+  Font.Name = 'Tahoma'
+  Font.Style = []
+  KeyPreview = True
+  OldCreateOrder = False
+  Position = poScreenCenter
+  WindowState = wsMaximized
+  PixelsPerInch = 96
+  TextHeight = 13
+  object pgPrincipal: TPageControl
+    AlignWithMargins = True
+    Left = 3
+    Top = 3
+    Width = 619
+    Height = 445
+    ActivePage = tsPesquisa
+    Align = alClient
+    TabOrder = 0
+    ExplicitWidth = 606
+    ExplicitHeight = 396
+    object tsPesquisa: TTabSheet
+      Caption = 'Pesquisa'
+      object grpPesquisa: TGroupBox
+        AlignWithMargins = True
+        Left = 5
+        Top = 3
+        Width = 601
+        Height = 126
+        Margins.Left = 5
+        Margins.Right = 5
+        Align = alTop
+        Caption = 'Informe os dados para pesquisa'
+        TabOrder = 0
+      end
+    end
+    object tsDados: TTabSheet
+      Caption = 'Dados'
+      ImageIndex = 1
+    end
+  end
+end

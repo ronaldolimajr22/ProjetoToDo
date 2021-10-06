@@ -1,0 +1,24 @@
+unit Entities;
+
+interface
+
+uses
+   Aurelius.Mapping.Attributes,
+   Aurelius.Types.Blob,
+   Aurelius.Types.Nullable;
+
+type
+   TLogin = class;
+   TTarefa = class;
+
+   TLogin = class
+
+   end;
+
+   TTarefa = class
+
+   end;
+
+implementation
+
+end.

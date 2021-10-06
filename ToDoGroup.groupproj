@@ -1,0 +1,60 @@
+﻿<Project xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+    <PropertyGroup>
+        <ProjectGuid>{FE67633E-E3FD-404E-88D9-F5BDAAB19E62}</ProjectGuid>
+    </PropertyGroup>
+    <ItemGroup>
+        <Projects Include="ProjetoToDo.dproj">
+            <Dependencies/>
+        </Projects>
+        <Projects Include="Package\ToDoPackage.dproj">
+            <Dependencies/>
+        </Projects>
+        <Projects Include="Service.dproj">
+            <Dependencies/>
+        </Projects>
+    </ItemGroup>
+    <ProjectExtensions>
+        <Borland.Personality>Default.Personality.12</Borland.Personality>
+        <Borland.ProjectType/>
+        <BorlandProject>
+            <Default.Personality/>
+        </BorlandProject>
+    </ProjectExtensions>
+    <Target Name="ProjetoToDo">
+        <MSBuild Projects="ProjetoToDo.dproj"/>
+    </Target>
+    <Target Name="ProjetoToDo:Clean">
+        <MSBuild Projects="ProjetoToDo.dproj" Targets="Clean"/>
+    </Target>
+    <Target Name="ProjetoToDo:Make">
+        <MSBuild Projects="ProjetoToDo.dproj" Targets="Make"/>
+    </Target>
+    <Target Name="ToDoPackage">
+        <MSBuild Projects="Package\ToDoPackage.dproj"/>
+    </Target>
+    <Target Name="ToDoPackage:Clean">
+        <MSBuild Projects="Package\ToDoPackage.dproj" Targets="Clean"/>
+    </Target>
+    <Target Name="ToDoPackage:Make">
+        <MSBuild Projects="Package\ToDoPackage.dproj" Targets="Make"/>
+    </Target>
+    <Target Name="Service">
+        <MSBuild Projects="Service.dproj"/>
+    </Target>
+    <Target Name="Service:Clean">
+        <MSBuild Projects="Service.dproj" Targets="Clean"/>
+    </Target>
+    <Target Name="Service:Make">
+        <MSBuild Projects="Service.dproj" Targets="Make"/>
+    </Target>
+    <Target Name="Build">
+        <CallTarget Targets="ProjetoToDo;ToDoPackage;Service"/>
+    </Target>
+    <Target Name="Clean">
+        <CallTarget Targets="ProjetoToDo:Clean;ToDoPackage:Clean;Service:Clean"/>
+    </Target>
+    <Target Name="Make">
+        <CallTarget Targets="ProjetoToDo:Make;ToDoPackage:Make;Service:Make"/>
+    </Target>
+    <Import Project="$(BDS)\Bin\CodeGear.Group.Targets" Condition="Exists('$(BDS)\Bin\CodeGear.Group.Targets')"/>
+</Project>

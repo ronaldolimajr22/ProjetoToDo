@@ -1,0 +1,22 @@
+unit Core.Usuarios;
+
+interface
+
+uses
+   System.Classes,
+   System.Generics.Collections,
+   Entities,
+   Core.Interfaces;
+
+type
+   TUsuario = class(TInterfacedObject, IPersistencia<TUsuario>)
+   private
+   public
+      function Salvar: Integer;
+      function Excluir: Boolean;
+      function ListarTodos(const aStatus: Boolean): TObjectList<T>;
+   end;
+
+implementation
+
+end.

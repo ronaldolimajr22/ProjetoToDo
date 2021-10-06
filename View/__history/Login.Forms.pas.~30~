@@ -1,0 +1,116 @@
+unit Login.Forms;
+
+interface
+
+uses
+   Winapi.Windows,
+   Winapi.Messages,
+   System.SysUtils,
+   System.Variants,
+   System.Classes,
+   Vcl.Graphics,
+   Vcl.Controls,
+   Vcl.Forms,
+   Vcl.Dialogs,
+   Vcl.StdCtrls,
+   Vcl.ExtCtrls,
+   Vcl.Buttons,
+   Entities,
+   Core.Interfaces, Core.Usuarios;
+
+type
+   TfrmLogin = class(TForm)
+      GroupBox1: TGroupBox;
+      Label1: TLabel;
+      Label2: TLabel;
+      llbEsqueciSenha: TLinkLabel;
+      edtEmail: TEdit;
+      edtSenha: TEdit;
+      btnAcessar: TBitBtn;
+      llbCadastroUsuario: TLinkLabel;
+    chkExibirSenha: TCheckBox;
+      procedure FormCreate(Sender: TObject);
+      procedure FormClose(Sender: TObject; var Action: TCloseAction);
+      procedure btnAcessarClick(Sender: TObject);
+      procedure FormKeyPress(Sender: TObject; var Key: Char);
+      procedure chkExibirSenhaClick(Sender: TObject);
+   private
+      FTentativas: Integer;
+      FLogado: Boolean;
+      FUsuario: TUsuario;
+   public
+      property Tentativas: Integer read FTentativas write FTentativas;
+      property Logado: Boolean read FLogado write FLogado;
+      property Usuario: TUsuario read FUsuario write FUsuario;
+
+      procedure Logar;
+   end;
+
+var
+   frmLogin: TfrmLogin;
+
+implementation
+
+{$R *.dfm}
+{ TfrmLogin }
+
+procedure TfrmLogin.btnAcessarClick(Sender: TObject);
+begin
+   Logar;
+end;
+
+procedure TfrmLogin.chkExibirSenhaClick(Sender: TObject);
+begin
+   if chkExibirSenha.Checked then
+      edtSenha.PasswordChar := #0
+   else
+      edtSenha.PasswordChar := '*';
+end;
+
+procedure TfrmLogin.FormClose(Sender: TObject; var Action: TCloseAction);
+begin
+   if not Logado then
+      Application.Terminate;
+end;
+
+procedure TfrmLogin.FormCreate(Sender: TObject);
+begin
+   Tentativas := 0;
+   Logado := False;
+end;
+
+procedure TfrmLogin.FormKeyPress(Sender: TObject; var Key: Char);
+begin
+   if Key = #13 then
+      Perform(WM_NEXTDLGCTL, 0, 0);
+end;
+
+procedure TfrmLogin.Logar;
+var
+   Engine: IUsuario;
+begin
+   try
+      if Tentativas < 3 then
+      begin
+         Engine := TUsuarios.Create;
+         Usuario := Engine.Logar(edtEmail.Text, edtSenha.Text);
+         if Assigned(Usuario) then
+         begin
+            Logado := True;
+            Close;
+         end
+         else
+         begin
+            Inc(FTentativas, 1);
+            Application.MessageBox(PChar(Format('Login inválido. Tentativa: %d de 3.', [Tentativas])
+              ), 'Login', 48);
+         end;
+      end
+      else
+         Application.Terminate;
+   finally
+      Engine := nil;
+   end;
+end;
+
+end.

@@ -1,0 +1,54 @@
+unit Usuario.Forms;
+
+interface
+
+uses
+   Winapi.Windows,
+   Winapi.Messages,
+   System.SysUtils,
+   System.Variants,
+   System.Classes,
+   Vcl.Graphics,
+   Vcl.Controls,
+   Vcl.Forms,
+   Vcl.Dialogs,
+   Vcl.StdCtrls,
+   Vcl.Buttons,
+   Vcl.ExtCtrls;
+
+type
+   TfrmUsuarios = class(TForm)
+      GroupBox: TGroupBox;
+      pnlBotoes: TPanel;
+      lblNome: TLabel;
+      lblEmail: TLabel;
+      lblSenha: TLabel;
+      edtNome: TEdit;
+      edtEmail: TEdit;
+      edtSenha: TEdit;
+      btnCancelar: TBitBtn;
+      btnSalvar: TBitBtn;
+      chkExibirSenha: TCheckBox;
+      procedure chkExibirSenhaClick(Sender: TObject);
+   private
+      { Private declarations }
+   public
+      { Public declarations }
+   end;
+
+var
+   frmUsuarios: TfrmUsuarios;
+
+implementation
+
+{$R *.dfm}
+
+procedure TfrmUsuarios.chkExibirSenhaClick(Sender: TObject);
+begin
+   if chkExibirSenha.Checked then
+      edtSenha.PasswordChar := #0
+   else
+      edtSenha.PasswordChar := '*';
+end;
+
+end.

@@ -1,0 +1,11 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<BorlandProject>
+	<Transactions>
+    <Transaction>2021/09/28 14:22:30.000.777,=rtl.dcp</Transaction>
+    <Transaction>2021/09/28 14:26:37.000.439,C:\Users\Ronaldo\Documents\Embarcadero\Studio\Projects\Package1.dproj=C:\Users\Ronaldo\Documents\AulaDelphi\Projeto ToDo\Package\ToDoPackage.dproj</Transaction>
+    <Transaction>2021/09/30 16:22:16.000.625,=C:\Users\Ronaldo\Documents\AulaDelphi\Projeto ToDo\Entities\Entities.pas</Transaction>
+    <Transaction>2021/09/30 16:22:25.000.861,=tmsbcl.dcp</Transaction>
+    <Transaction>2021/09/30 16:22:25.000.891,=aurelius.dcp</Transaction>
+    <Transaction>2021/09/30 16:22:25.000.800,=dbrtl.dcp</Transaction>
+  </Transactions>
+</BorlandProject>

@@ -1,0 +1,70 @@
+unit Core.Tarefas;
+
+interface
+
+uses
+   System.Classes,
+   System.Generics.Collections,
+   Entities,
+   Aurelius.Engine.ObjectManager,
+   Aurelius.Criteria.Linq,
+   ConnectionModule,
+   Core.Interfaces;
+
+type
+   TTarefas = class(TInterfacedObject, IPersistencia<TTarefa>)
+   private
+   public
+      function Salvar(aObjeto: TTarefa): Integer;
+      function Excluir(aObjeto: TTarefa): Boolean;
+      function ListarTodos(const aStatus: Boolean): TObjectList<TTarefa>;
+   end;
+
+implementation
+
+{ TTarefas }
+
+function TTarefas.Excluir(aObjeto: TTarefa): Boolean;
+begin
+   Result := True;
+end;
+
+function TTarefas.ListarTodos(const aStatus: Boolean): TObjectList<TTarefa>;
+begin
+   Result := nil;
+end;
+
+function TTarefas.Salvar(aObjeto: TTarefa): Integer;
+var
+   Manager: TObjectManager;
+   NewObject: TTarefa;
+begin
+   Result := 0;
+   Manager := TObjectManager.Create(FireDacFirebird3Connection.CreateConnection);
+   try
+      try
+         if aObjeto.Id > 0 then
+         begin
+            NewObject := Manager.Find<TTarefa>(aObjeto.Id);
+            if Assigned(NewObject) then
+            begin
+               NewObject.Titulo := aObjeto.Titulo;
+               NewObject.Descricao := aObjeto.Descricao;
+               NewObject.Concluido := aObjeto.Concluido;
+               NewObject.Data := aObjeto.Data;
+               Manager.Flush(NewObject);
+            end;
+         end
+         else
+            Manager.Save(aObjeto);
+
+         Result := aObjeto.Id;
+      except
+         raise;
+      end;
+   finally
+      Manager.Free;
+   end;
+end;
+
+end.

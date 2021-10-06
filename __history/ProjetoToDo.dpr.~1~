@@ -1,0 +1,14 @@
+program ProjetoToDo;
+
+uses
+  Vcl.Forms,
+  Login.Forms in 'View\Login.Forms.pas' {Form1};
+
+{$R *.res}
+
+begin
+  Application.Initialize;
+  Application.MainFormOnTaskbar := True;
+  Application.CreateForm(TForm1, Form1);
+  Application.Run;
+end.

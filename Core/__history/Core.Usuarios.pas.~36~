@@ -1,0 +1,121 @@
+unit Core.Usuarios;
+
+interface
+
+uses
+   System.Classes,
+   System.Generics.Collections,
+   Entities,
+   Aurelius.Engine.ObjectManager,
+   Aurelius.Criteria.Linq,
+   ConnectionModule,
+   Core.Interfaces;
+
+type
+   TUsuarios = class(TInterfacedObject, IPersistencia<TUsuario>, IUsuario)
+   private
+   public
+      function Salvar(aObjeto: TUsuario): Integer;
+      function Excluir(aObjeto: TUsuario): Boolean;
+      function ListarTodos(const aStatus: Boolean): TObjectList<TUsuario>;
+      function Logar(const aEmail, aSenha: String): TUsuario;
+   end;
+
+implementation
+
+{ TUsuarios }
+
+function TUsuarios.Excluir(aObjeto: TUsuario): Boolean;
+var
+   Manager: TObjectManager;
+begin
+   Result := True;
+   Manager := TObjectManager.Create
+     (FireDacFirebird3Connection.CreateConnection);
+   try
+      try
+         Manager.Remove(aObjeto);
+      except
+         raise;
+      end;
+   finally
+      Manager.Free;
+      Result := False;
+   end;
+end;
+
+function TUsuarios.ListarTodos(const aStatus: Boolean): TObjectList<TUsuario>;
+var
+   Manager: TObjectManager;
+begin
+   Result := nil;
+   Manager := TObjectManager.Create(FireDacFirebird3Connection.CreateConnection);
+   Manager.OwnsObjects := False;
+   try
+      try
+         Result := Manager.Find<TUsuario>//
+               .Add(Linq.Eq('STATUS', aStatus))//
+               .List;
+      except
+         raise;
+      end;
+   finally
+      Manager.Free;
+   end;
+end;
+
+function TUsuarios.Logar(const aEmail, aSenha: String): TUsuario;
+var
+   Manager: TObjectManager;
+   Usuario: TUsuario;
+begin
+   Result := nil;
+   Manager := TObjectManager.Create(FireDacFirebird3Connection.CreateConnection);
+
+   try
+      try
+         Result := Manager.Find<TUsuario>//
+               .Add(Linq.Eq('EMAIL', aEmail))//
+               .Add(Linq.Eq('SENHA', aSenha))//
+               .List;
+      except
+         raise;
+      end;
+   finally
+      Manager.Free;
+   end;
+end;
+
+function TUsuarios.Salvar(aObjeto: TUsuario): Integer;
+var
+   Manager: TObjectManager;
+   NewObject: TUsuario;
+begin
+   Result := 0;
+   Manager := TObjectManager.Create(FireDacFirebird3Connection.CreateConnection);
+   try
+      try
+         if aObjeto.Id > 0 then
+         begin
+            NewObject := Manager.Find<TUsuario>(aObjeto.Id);
+            if Assigned(NewObject) then
+            begin
+               NewObject.Nome := aObjeto.Nome;
+               NewObject.Email := aObjeto.Email;
+               NewObject.Senha := aObjeto.Senha;
+               Manager.Flush(NewObject);
+            end;
+         end
+         else
+            Manager.Save(aObjeto);
+
+         Result := aObjeto.Id;
+      except
+         raise;
+      end;
+   finally
+      Manager.Free;
+   end;
+end;
+
+end.

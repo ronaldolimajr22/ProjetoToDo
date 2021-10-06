@@ -1,0 +1,262 @@
+object frmTarefas: TfrmTarefas
+  Left = 0
+  Top = 0
+  Caption = 'Projeto ToDo - Tarefas'
+  ClientHeight = 451
+  ClientWidth = 578
+  Color = clBtnFace
+  Font.Charset = DEFAULT_CHARSET
+  Font.Color = clWindowText
+  Font.Height = -11
+  Font.Name = 'Tahoma'
+  Font.Style = []
+  KeyPreview = True
+  OldCreateOrder = False
+  Position = poScreenCenter
+  PixelsPerInch = 96
+  TextHeight = 13
+  object pgPrincipal: TPageControl
+    AlignWithMargins = True
+    Left = 3
+    Top = 3
+    Width = 572
+    Height = 426
+    ActivePage = tsPesquisa
+    Align = alClient
+    TabOrder = 0
+    ExplicitWidth = 606
+    ExplicitHeight = 396
+    object tsPesquisa: TTabSheet
+      Caption = 'Pesquisa'
+      object grpPesquisa: TGroupBox
+        AlignWithMargins = True
+        Left = 5
+        Top = 3
+        Width = 554
+        Height = 70
+        Margins.Left = 5
+        Margins.Right = 5
+        Margins.Bottom = 0
+        Align = alTop
+        Caption = 'Informe os dados para pesquisa'
+        TabOrder = 0
+        object lblPTitulo: TLabel
+          Left = 11
+          Top = 24
+          Width = 30
+          Height = 13
+          Caption = 'T'#237'tulo:'
+        end
+        object edtPTitulo: TEdit
+          Left = 56
+          Top = 21
+          Width = 369
+          Height = 21
+          TabOrder = 0
+        end
+        object btnPesquisar: TButton
+          Left = 431
+          Top = 19
+          Width = 120
+          Height = 25
+          Caption = 'Pesquisar'
+          TabOrder = 1
+        end
+      end
+      object chkExibirConcluido: TCheckBox
+        AlignWithMargins = True
+        Left = 5
+        Top = 378
+        Width = 554
+        Height = 17
+        Margins.Left = 5
+        Margins.Right = 5
+        Align = alBottom
+        Caption = 'Exibir Apenas Conclu'#237'do'
+        TabOrder = 1
+        ExplicitLeft = 192
+        ExplicitTop = 224
+        ExplicitWidth = 97
+      end
+      object pnlPesquisa: TPanel
+        AlignWithMargins = True
+        Left = 5
+        Top = 73
+        Width = 554
+        Height = 40
+        Margins.Left = 5
+        Margins.Top = 0
+        Margins.Right = 5
+        Margins.Bottom = 0
+        Align = alTop
+        TabOrder = 2
+        ExplicitTop = 121
+        object btnEditar: TSpeedButton
+          Left = 41
+          Top = 1
+          Width = 40
+          Height = 38
+          Margins.Left = 0
+          Margins.Top = 0
+          Margins.Right = 0
+          Margins.Bottom = 0
+          Align = alLeft
+          ExplicitLeft = 24
+          ExplicitHeight = 30
+        end
+        object btnExcluir: TSpeedButton
+          Left = 81
+          Top = 1
+          Width = 40
+          Height = 38
+          Margins.Left = 0
+          Margins.Top = 0
+          Margins.Right = 0
+          Margins.Bottom = 0
+          Align = alLeft
+          ExplicitLeft = 47
+          ExplicitHeight = 30
+        end
+        object btnNovo: TSpeedButton
+          Left = 1
+          Top = 1
+          Width = 40
+          Height = 38
+          Margins.Left = 0
+          Margins.Top = 0
+          Margins.Right = 0
+          Margins.Bottom = 0
+          Align = alLeft
+          ExplicitHeight = 30
+        end
+      end
+      object grbPesquisa: TDBGrid
+        AlignWithMargins = True
+        Left = 5
+        Top = 116
+        Width = 554
+        Height = 256
+        Margins.Left = 5
+        Margins.Right = 5
+        Align = alClient
+        DataSource = dsPesquisa
+        TabOrder = 3
+        TitleFont.Charset = DEFAULT_CHARSET
+        TitleFont.Color = clWindowText
+        TitleFont.Height = -11
+        TitleFont.Name = 'Tahoma'
+        TitleFont.Style = []
+      end
+    end
+    object tsDados: TTabSheet
+      Caption = 'Dados'
+      ImageIndex = 1
+      object pnlDadosBotoes: TPanel
+        Left = 0
+        Top = 357
+        Width = 564
+        Height = 41
+        Align = alBottom
+        BevelOuter = bvNone
+        TabOrder = 0
+        ExplicitLeft = 232
+        ExplicitTop = 240
+        ExplicitWidth = 185
+        object btnSalvar: TBitBtn
+          Left = 444
+          Top = 0
+          Width = 120
+          Height = 41
+          Margins.Left = 1
+          Align = alRight
+          Caption = 'Salvar'
+          TabOrder = 0
+          ExplicitLeft = 461
+        end
+        object btnCancelar: TBitBtn
+          Left = 324
+          Top = 0
+          Width = 120
+          Height = 41
+          Margins.Right = 0
+          Align = alRight
+          Caption = 'Cancelar'
+          TabOrder = 1
+          ExplicitLeft = 365
+          ExplicitTop = 1
+        end
+      end
+      object grpAtividades: TGroupBox
+        AlignWithMargins = True
+        Left = 5
+        Top = 5
+        Width = 554
+        Height = 172
+        Margins.Left = 5
+        Margins.Top = 5
+        Margins.Right = 5
+        Margins.Bottom = 5
+        Align = alTop
+        Caption = 'Atividades'
+        TabOrder = 1
+        ExplicitWidth = 601
+        object lblTitulo: TLabel
+          Left = 56
+          Top = 19
+          Width = 30
+          Height = 13
+          Caption = 'T'#237'tulo:'
+        end
+        object lblDescricao: TLabel
+          Left = 36
+          Top = 46
+          Width = 50
+          Height = 13
+          Caption = 'Descri'#231#227'o:'
+        end
+        object edtTitulo: TEdit
+          Left = 96
+          Top = 16
+          Width = 465
+          Height = 21
+          TabOrder = 0
+        end
+        object mmoDescricao: TMemo
+          Left = 96
+          Top = 43
+          Width = 465
+          Height = 89
+          TabOrder = 1
+        end
+        object chkConcluida: TCheckBox
+          Left = 96
+          Top = 138
+          Width = 97
+          Height = 17
+          Caption = 'Conclu'#237'da'
+          TabOrder = 2
+        end
+      end
+    end
+  end
+  object StatusBar: TStatusBar
+    Left = 0
+    Top = 432
+    Width = 578
+    Height = 19
+    Panels = <>
+    ExplicitLeft = 224
+    ExplicitTop = 440
+    ExplicitWidth = 0
+  end
+  object cdsPesquisa: TAureliusDataset
+    FieldDefs = <>
+    Left = 423
+    Top = 107
+  end
+  object dsPesquisa: TDataSource
+    DataSet = cdsPesquisa
+    Left = 383
+    Top = 107
+  end
+end

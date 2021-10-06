@@ -1,0 +1,67 @@
+unit Core.Usuarios;
+
+interface
+
+uses
+   System.Classes,
+   System.Generics.Collections,
+   Entities,
+   Aurelius.Engine.ObjectManager,
+   ConnectionModule,
+   Core.Interfaces;
+
+type
+   TUsuarios = class(TInterfacedObject, IPersistencia<TUsuario>)
+   private
+   public
+      function Salvar(aObjeto: TUsuario): Integer;
+      function Excluir(aObjeto: TUsuario): Boolean;
+      function ListarTodos(const aStatus: Boolean): TObjectList<TUsuario>;
+   end;
+
+implementation
+
+{ TUsuarios }
+
+function TUsuarios.Excluir(aObjeto: TUsuario): Boolean;
+var
+   Manager: TObjectManager;
+begin
+   Result := True;
+   Manager := TObjectManager.Create
+     (FireDacFirebird3Connection.CreateConnection);
+   try
+      try
+         Manager.Remove(aObjeto);
+      except
+         raise;
+      end;
+   finally
+      Manager.Free;
+      Result := False;
+   end;
+end;
+
+function TUsuarios.ListarTodos(const aStatus: Boolean): TObjectList<TUsuario>;
+begin
+   Result := nil;
+end;
+
+function TUsuarios.Salvar(aObjeto: TUsuario): Integer;
+var
+   Manager: TObjectManager;
+begin
+   Result := 0;
+   Manager := TObjectManager.Create(FireDacFirebird3Connection.CreateConnection);
+   try
+      try
+         Manager.Save(aObjeto);
+      except
+         raise;
+      end;
+   finally
+      Manager.Free;
+   end;
+end;
+
+end.

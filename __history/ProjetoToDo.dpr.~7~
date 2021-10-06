@@ -1,0 +1,18 @@
+program ProjetoToDo;
+
+uses
+  Vcl.Forms,
+  Login.Forms in 'View\Login.Forms.pas' {frmLogin},
+  Tarefas.Forms in 'View\Tarefas.Forms.pas' {frmTarefas},
+  Entities in 'Entities\Entities.pas',
+  Core.Interfaces in 'Core\Core.Interfaces.pas';
+
+{$R *.res}
+
+begin
+  Application.Initialize;
+  Application.MainFormOnTaskbar := True;
+  Application.CreateForm(TfrmLogin, frmLogin);
+  Application.CreateForm(TfrmTarefas, frmTarefas);
+  Application.Run;
+end.

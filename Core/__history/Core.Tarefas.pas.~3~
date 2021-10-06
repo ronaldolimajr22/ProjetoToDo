@@ -1,0 +1,39 @@
+unit Core.Tarefas;
+
+interface
+
+uses
+   System.Classes,
+   System.Generics.Collections,
+   Entities,
+   Core.Interfaces;
+
+type
+   TTarefa = class(TInterfacedObject, IPersistencia<TTarefa>)
+   private
+   public
+      function Salvar: Integer;
+      function Excluir: Boolean;
+      function ListarTodos(const aStatus: Boolean): TObjectList<TTarefa>;
+   end;
+
+implementation
+
+{ TUsuario }
+
+function TTarefa.Excluir: Boolean;
+begin
+
+end;
+
+function TTarefa.ListarTodos(const aStatus: Boolean): TObjectList<TTarefa>;
+begin
+
+end;
+
+function TTarefa.Salvar: Integer;
+begin
+
+end;
+
+end.

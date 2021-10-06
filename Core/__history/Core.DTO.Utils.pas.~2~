@@ -1,0 +1,15 @@
+unit Core.DTO.Utils;
+
+interface
+uses
+   System.Classes,
+   System.SysUtils;
+type
+   TToken = class
+   private
+   public
+   end;
+
+implementation
+
+end.

@@ -1,0 +1,34 @@
+unit Entities;
+
+interface
+
+uses
+   Aurelius.Mapping.Attributes,
+   Aurelius.Types.Blob,
+   Aurelius.Types.Nullable;
+
+type
+   TLogin = class;
+   TTarefa = class;
+
+   [Entity]
+   [Table('TLOGIN')]
+   [Sequence('')]
+   [Id('FId', TIdGenerator.None)]
+   TLogin = class
+   private
+   public
+   end;
+
+   [Entity]
+   [Table('TTODO')]
+   [Sequence('')]
+   [Id('FId', TIdGenerator.None)]
+   TTarefa = class
+   private
+   public
+   end;
+
+implementation
+
+end.

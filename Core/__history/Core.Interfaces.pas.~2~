@@ -1,0 +1,7 @@
+unit Core.Interfaces;
+
+interface
+
+implementation
+
+end.

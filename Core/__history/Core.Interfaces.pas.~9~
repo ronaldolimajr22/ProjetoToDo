@@ -1,0 +1,25 @@
+unit Core.Interfaces;
+
+interface
+uses
+   System.Classes,
+   System.Generics.Collections,
+   Entities;
+
+type
+   IPersistencia<T: class>= interface
+      ['{34688D4E-C477-43D9-89BD-B78DC9E0631F}']
+
+      function Salvar(aObjeto: T): Integer; overload;
+      function Excluir(aObjeto: T): Boolean;
+      function ListarTodos(const aStatus: Boolean): TObjectList<T>;
+   end;
+
+   IUsuario = interface
+      ['{D8664C93-16B5-4213-BF2B-188E5C633A46}']
+      function Logar(const aEmail, aSenha: String): TUsuario;
+   end;
+
+implementation
+
+end.

@@ -1,0 +1,18 @@
+unit Entities;
+
+interface
+type
+   TLogin = class;
+   TTarefa = class;
+
+   TLogin = class
+
+   end;
+
+   TTarefa = class
+
+   end;
+
+implementation
+
+end.

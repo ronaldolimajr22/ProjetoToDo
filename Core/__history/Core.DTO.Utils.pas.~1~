@@ -1,0 +1,7 @@
+unit Core.DTO.Utils;
+
+interface
+
+implementation
+
+end.

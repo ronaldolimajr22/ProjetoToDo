@@ -1,0 +1,19 @@
+unit Core.Interfaces;
+
+interface
+uses
+   System.Classes,
+   System.Generics.Collections;
+
+type
+   IPersistencia<T: class>= interface
+      ['{34688D4E-C477-43D9-89BD-B78DC9E0631F}']
+
+      function Salvar(aObjeto: T): Integer; overload;
+      function Excluir(aObjeto: T): Boolean;
+      function ListarTodos(const aStatus: Boolean): TObjectList<T>;
+   end;
+
+implementation
+
+end.
