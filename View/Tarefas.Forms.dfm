@@ -23,7 +23,7 @@ object frmTarefas: TfrmTarefas
     Top = 3
     Width = 580
     Height = 426
-    ActivePage = tsPesquisa
+    ActivePage = tsDados
     Align = alClient
     TabOrder = 0
     object tsPesquisa: TTabSheet
@@ -420,6 +420,7 @@ object frmTarefas: TfrmTarefas
           Width = 441
           Height = 21
           CharCase = ecUpperCase
+          MaxLength = 100
           TabOrder = 0
         end
         object mmoDescricao: TMemo
